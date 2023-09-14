@@ -1,0 +1,126 @@
+/* Reset */
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+*{
+    margin:0;
+    padding:0;
+}
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+/* Global Typography */
+*{
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+html {
+	-ms-text-size-adjust: 100%;
+	-webkit-text-size-adjust: 100%;
+	font-size: 10px;
+}
+body {
+    font-family: 'Roboto', sans-serif;
+    font-weight: normal;
+    font-size: 1.6rem;
+    color:#475055;
+    line-height: 1;
+}
+
+/* General Text Formatting */
+small {font-size: 85.71429%;line-height: 1.75;}
+img{max-width: 100%;height: auto;}
+
+/* Global Button */
+button {
+    outline: 0;
+    border: 0;
+	cursor: pointer;
+}
+.btn{
+	background-color: #60be74;
+	text-transform: uppercase;
+	color: #fff;
+	border: 1px solid transparent;
+}
+.btn:hover{
+	border-color: #60be74;
+	background: transparent;
+	color: #60be74;
+	transition: 0.5s ease-out;
+}
+/* Global Link style */
+a {text-decoration: none;outline: none;display: inline-block;}
+a:hover, a:focus {color:#7b83d1;}
+
+/* Global Heading */
+/* New Product CSS start */
+h2 {
+	font-size: 22px;
+	font-weight: 700;
+	text-transform: uppercase;
+}
+
+/* Global Sprite Icons */
+[class^="icon-"], [class*="icon-"] {
+	background-image: url(../images/sprite.png);
+	background-position: 0 0;
+	background-repeat: no-repeat;
+	display: inline-block;
+	height: 15px;
+	vertical-align: text-top;
+	width: 15px;
+}
+/* font */
+@font-face {
+    font-family: 'dinkregular';
+    src: url('../font/dink-webfont.woff2') format('woff2'),
+         url('../font/dink-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+.container{
+	max-width: 1170px;
+	margin: 0 auto;
+}
+
