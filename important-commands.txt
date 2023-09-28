@@ -1,0 +1,112 @@
+	new setup
+-------------
+-------------
+composer create-project --repository-url=https://repo.magento.com/ magento/project-enterprise-edition=2.4.3 demo
+composer config -g repo.packagist composer https://packagist.org
+composer config -g github-protocols https ssh
+
+sudo update-alternatives --config php
+
+sudo a2dismod php7.4
+sudo a2enmod php7.3
+
+php bin/magento setup:install \
+--base-url=http://localhost/test \
+--db-host=localhost \
+--db-name=forest_local \
+--db-user=root \
+--db-password=123456 \
+--admin-firstname=rahul \
+--admin-lastname=gola \
+--admin-email=admin@admin.com \
+--admin-user=forest \
+--admin-password=forest123 \
+--language=en_US \
+--currency=USD \
+--timezone=America/Chicago \
+--use-rewrites=1
+
+sudo apt install php7.4-bcmath
+
+
+imp cmd
+------------
+sudo chmod -R 777 pub var generated
+rm -rf generated/*
+rm -rf pub/static/*
+rm -rf var/cache/* var/page_cache/* var/di pub/static/* var/view_preprocessed/*
+php -d error_log= -d memory_limit=-1 bin/magento setup:upgrade
+php -d error_log= -d memory_limit=-1 bin/magento setup:di:compile
+php -d error_log= -d memory_limit=-1 bin/magento setup:static-content:deploy -f
+php -d error_log= -d memory_limit=-1 bin/magento cache:flush
+php -d error_log= -d memory_limit=-1 bin/magento c:c
+php -d error_log= -d memory_limit=-1 bin/magento indexer:reset
+php -d error_log= -d memory_limit=-1 bin/magento indexer:reindex
+
+sudo chmod -R 777 pub var generated
+
+php -d allow_url_fopen=1 -d memory_limit=10G bin/magento setup:install --base-url=http://localhost/magento245 --db-host=localhost --db-name=magento2.4.5 --db-user=sparx --db-password=sparx --admin-firstname=Admin --admin-lastname=User --admin-email=rajatdeshwal03111998@gmail.com --admin-user=rajat --admin-password=rajat@12345 --language=en_US --currency=USD --timezone=America/Chicago --use-rewrites=1 --cleanup-database \
+--search-engine=elasticsearch7 --elasticsearch-host=http://localhost:9200 \
+--elasticsearch-port=9200 --elasticsearch-index-prefix=rajat
+
+
+
+
+sudo systemctl start elasticsearch
+sudo systemctl enable elasticsearch
+
+$writer = new \Laminas\Log\Writer\Stream(BP . '/var/log/test.log');
+$logger = new \Laminas\Log\Logger();
+$logger->addWriter($writer);
+$logger->info('Your product sku ='.$item->getProduct()->getSku());
+
+
+
+$writer = new \Zend\Log\Writer\Stream(BP . '/var/log/test.log');
+$logger = new \Zend\Log\Logger();
+$logger->addWriter($writer);
+$logger->info('Your card amount is'." ".print_r($amount, true));
+
+virtual host
+-------------
+sudo mkdir -p /var/www/magento245.local/public_html
+sudo chown -R $USER:$USER /var/www/magento245.local/public_html
+gedit /var/www/magento245.local/public_html/index.html
+sudo cp /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/magento245.local.conf
+sudo gedit /etc/apache2/sites-available/magento245.local.conf
+sudo a2ensite magento245.local.conf
+sudo gedit /etc/hosts
+
+hit in browser
+---------------
+http://magento244.local/
+
+<html>
+    <head>
+        <title>Welcome to magento244.local!</title>
+    </head>
+    <body>
+        <h1>Success!  The magento244.local! virtual host is working!</h1>
+    </body>
+</html>
+
+
+
+<VirtualHost *:80>
+    ServerName test.local
+    DocumentRoot "/var/www/html/test"
+    SetEnv APPLICATION_ENV "development"
+    <Directory "/var/www/html/test">
+        DirectoryIndex index.php
+        AllowOverride All
+        Order allow,deny
+        Allow from all
+                Require all granted
+    </Directory>
+</VirtualHost>
+
+# vim: syntax=apache ts=4 sw=4 sts=4 sr noet
+
+
+
+php bin/magento setup:install --base-url=magento245.local --db-host=localhost --db-name=magento2.4.5 --db-user=sparx --db-password=sparx --admin-firstname=Admin --admin-lastname=Admin --admin-email=sachin.kumar@psparxitsolutions.com --admin-user=admin --admin-password=<your-admin-password> --language=en_US --currency=USD --timezone=America/Chicago --backend-frontname=admin --search-engine=elasticsearch7 --elasticsearch-host=localhost --elasticsearch-port=9200

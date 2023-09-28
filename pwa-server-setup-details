@@ -1,0 +1,52 @@
+Good Morning Sir
+Please find the details.
+
+SFTP Details
+Host: 10.0.2.83
+User: admin
+Pass: Admin_pass77655
+Port: 22
+
+ssh admin@10.0.2.83
+
+URL - https://mage-pwa.devsparxit.com/
+
+DB Details
+Db_auth
+User: mysql_admin
+Pass: Pass_fS32P6Mk
+
+https://mage-pwa.devsparxit.com/pmacpsx
+User: admin
+db: admin
+pass : ky15LYT0F*LZy1H7
+Host: localhost
+
+/usr/local/php81/bin/php bin/magento sampledata:deploy
+
+/usr/local/php81/bin/php /usr/local/bin/composer update
+/usr/local/php81/bin/php /usr/local/bin/composer create-project --repository-url=https://repo.magento.com/ magento/project-community-edition=2.4.5
+
+public Key: 275cb49bbd9dc3ad091cb4b4274d08f0
+Private Key: db26115ea8f21dd0a689b9a5b4e4583b
+
+nohup yarn run stage:venia &
+
+/usr/local/php81/bin/php bin/magento setup:install --base-url=https://mage-pwa.devsparxit.com --db-host=localhost --db-name=admin_magento245p1 --db-user=admin --db-password=ky15LYT0F*LZy1H7 --admin-firstname=Admin --admin-lastname=User --admin-email=rajatdeshwal03111998@gmail.com --admin-user=dev --admin-password=dev@12345 --language=en_US --currency=USD --timezone=America/Chicago --use-rewrites=1 --cleanup-database --search-engine=elasticsearch7 --elasticsearch-host=http://localhost:9200 --elasticsearch-port=9200 --elasticsearch-index-prefix=dev
+
+/usr/local/php81/bin/php -d allow_url_fopen=1 -d memory_limit=2G bin/magento setup:install --base-url=https://mage-pwa.devsparxit.com --db-host=localhost --db-name=admin_magento245pwa --db-user=admin --db-password=ky15LYT0F*LZy1H7 --admin-firstname=Admin --admin-lastname=User --admin-email=rajatdeshwal03111998@gmail.com --admin-user=dev --admin-password=dev@12345 --language=en_US --currency=USD --timezone=America/Chicago --use-rewrites=1 --cleanup-database --search-engine=elasticsearch7 --elasticsearch-host=http://localhost:9200 --elasticsearch-port=9200 --elasticsearch-index-prefix=dev
+
+/usr/local/php81/bin/php /usr/local/bin/composer require magento/module-upward-connector
+
+
+
+/usr/local/php81/bin/php bin/magento setup:upgrade
+/usr/local/php81/bin/php bin/magento setup:di:compile
+/usr/local/php81/bin/php bin/magento setup:static-content:deploy -f
+/usr/local/php81/bin/php bin/magento cache:flush
+/usr/local/php81/bin/php bin/magento cache:clean
+
+
+
+curl -H 'Content-Type: application/json' -X POST -d '{"query": "query {storeConfig{ id secure_base_media_url} }"}' http://magento245.local/graphql
+

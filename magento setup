@@ -1,0 +1,77 @@
+composer create-project --repository-url=https://repo.magento.com/ magento/project-community-edition=2.4.4
+
+php bin/magento setup:install --base-url=http://custom.magento245.com --db-host=localhost --db-name=magento246 --db-user=root --db-password=Sachin@123 --admin-firstname=Admin --admin-lastname=Admin --admin-email=sachinkumarmwn35@gmail.com --admin-user=admin --admin-password=Admin@12345 --language=en_US --currency=USD --timezone=America/Chicago --backend-frontname=admin --search-engine=elasticsearch7 --elasticsearch-host=localhost --elasticsearch-port=9200
+
+create virtualhost in apache2
+add path in hosts file
+
+php bin/magento setup:di:compile
+php bin/magento setup:upgrade
+php bin/magento setup:static-content:deploy -f
+sudo chmod -R 0777 var/
+sudo chmod -R 0777 generated/
+sudo chmod -R 0777 pub/static/
+
+
+sudo chmod -R 777 pub var generated app
+rm -rf generated/*
+rm -rf pub/static/* 
+rm -rf var/cache/* var/page_cache/* var/di pub/static/* var/view_preprocessed/*
+php -d error_log= -d memory_limit=-1 bin/magento setup:upgrade
+php -d error_log= -d memory_limit=-1 bin/magento setup:di:compile
+php -d error_log= -d memory_limit=-1 bin/magento setup:static-content:deploy -f
+php -d error_log= -d memory_limit=-1 bin/magento cache:flush
+php -d error_log= -d memory_limit=-1 bin/magento c:c
+php -d error_log= -d memory_limit=-1 bin/magento indexer:reset
+php -d error_log= -d memory_limit=-1 bin/magento indexer:reindex
+sudo chmod -R 777 pub var generated app
+
+
+
+curl -X GET 'http://localhost:9200'
+
+for install php extension --> sudo apt-get install php8.1-bcmath
+
+
+sudo apt install php8.2-xsl php8.2-soap php8.2-intl php8.2-curl php8.2-mysql php8.2-mcrypt php8.2-mbstring
+sudo apt install php8.2-xsl php8.2-soap php8.2-intl php8.2-curl php8.2-mysql php8.2-mcrypt php8.2-mbstring php8.2-zip php8.2-bz2
+
+
+
+127.0.0.1 custom.magento245.com
+
+<VirtualHost *:80>
+	# The ServerName directive sets the request scheme, hostname and port that
+	# the server uses to identify itself. This is used when creating
+	# redirection URLs. In the context of virtual hosts, the ServerName
+	# specifies what hostname must appear in the request's Host: header to
+	# match this virtual host. For the default virtual host (this file) this
+	# value is not decisive as it is used as a last resort host regardless.
+	# However, you must set it for any further virtual host explicitly.
+	#ServerName www.example.com
+
+	ServerAdmin webmaster@localhost
+	DocumentRoot /var/www/html/magento-project/magento245/pub
+         ServerName custom.magento245.com
+	ErrorLog ${APACHE_LOG_DIR}/error.log
+	CustomLog ${APACHE_LOG_DIR}/access.log combined
+	<Directory "/var/www/html/magento-project/magento245/pub">
+	AllowOverride all
+	</Directory>
+
+	# Available loglevels: trace8, ..., trace1, debug, info, notice, warn,
+	# error, crit, alert, emerg.
+	# It is also possible to configure the loglevel for particular
+	# modules, e.g.
+	#LogLevel info ssl:warn
+
+	ErrorLog ${APACHE_LOG_DIR}/error.log
+	CustomLog ${APACHE_LOG_DIR}/access.log combined
+
+	# For most configuration files from conf-available/, which are
+	# enabled or disabled at a global level, it is possible to
+	# include a line for only one particular virtual host. For example the
+	# following line enables the CGI configuration for this host only
+	# after it has been globally disabled with "a2disconf".
+	#Include conf-available/serve-cgi-bin.conf
+</VirtualHost>
